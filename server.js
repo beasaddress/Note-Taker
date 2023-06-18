@@ -11,4 +11,11 @@ const PORT = process.env.PORT || 3001;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-//static
+//adding middleware to configure express to serve the static files
+//from the "public" directory
+app.use(express.static('public'));
+
+//setting up a middleware to handle requests starting with /api
+app.use('./api', apiRoutes);
+//middleware for handling HTML pages
+app.use('/', htmlRoutes);
