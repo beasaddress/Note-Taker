@@ -7,3 +7,9 @@ const router = require('express').Router();
 router.get('/notes', (req, res) => {
     res.sendFile(path.join(__dirname, '../public/notes.html'));
 });
+//setting up a route handler for a get request for any path(wildcard)
+router.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../public/index.html'));//if client makes a get request to a path that isnt defined, this line will send index.html 
+});
+
+module.exports = router;
