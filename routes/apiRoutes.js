@@ -9,6 +9,14 @@ router.get('/notes', (req, res) => {
     })
     .catch((err) => res.status(500).json(err));
 });
+//setting up a route handler for post requests
+router.post('/notes', (req, res) => {
+    //this post request calls a function from store.js that will add a new note to the database
+    store.addNote(req.body)//passing the request body as an arguement
+    .then((note) => res.json(note))
+    .catch((err) => res.status(500).json(err));
+});
+
 
 
 module.exports = router;
