@@ -19,3 +19,6 @@ app.use(express.static('public'));
 app.use('./api', apiRoutes);
 //middleware for handling HTML pages
 app.use('/', htmlRoutes);
+
+//listening on port
+app.listen(PORT, () => console.log(`Listening on PORT: ${PORT}`));
