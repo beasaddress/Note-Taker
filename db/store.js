@@ -8,13 +8,21 @@ function getNotes() {
     });
 }
 
-function addNotes () {
+function addNote () {
     const dbNote = req.body;
     readFileAsync('./db/db.json', 'utf8').then(function(data) {
         const dbNotes = [].concat(JSON.parse(data));
-        noteList.id = notes.length + 1
-        
-    })
+        dbNote.id = dbNotes.length + 1
+        dbNotes.push(dbNote);
+        return dbNotes
+        }).then(function(dbNotes) {
+            writeFileAsync('./db/db.json', JSON.stringify(dbNotes))
+            res.json(dbNote);
+        });
 }
 
-module.exports = store;
+function removeNote() {
+
+}
+
+module.exports = { getNotes, addNote, removeNote };
