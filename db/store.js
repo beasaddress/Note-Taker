@@ -1,12 +1,13 @@
 const { v4: uuidv4 } = require('uuid');
 const fs = require('fs');
 
-//function getNotes() {
-   // const dbNotes = readFileAsync('./db/db.json', 'utf8').then(function(data) {
-       // dbNotes = [].concat(JSON.parse(data))
-       // res.json(dbNotes);
-   // });
-//}
+function getNotes() {
+   res.status(200).json(`${req.method} request recieved to get notes`);
+   //log request to terminal
+   console.info(`${req.method} request received to get notes`);
+   //display notes by using readFromFile function
+   readFromFile('./db/db.json').then((data) => res.json(JSON.parse(data)));
+}
 
 function addNote () {
    console.info(`${req.method} request method to add note`);

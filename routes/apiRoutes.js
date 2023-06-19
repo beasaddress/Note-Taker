@@ -20,11 +20,11 @@ router.post('/notes', (req, res) => {
 });
 //setting up a route to handle deleting notes. the delete request
 //will call a removeNote funtion that will pass the note id as an arguement to remove it from the database
-router.delete('/notes/:id', (req, res) => {
-    store.removeNote(req.params.id)
-    .then(() => res.json({ ok: true }))//the callback function will send a json response indicating
+//router.delete('/notes/:id', (req, res) => {
+    //store.removeNote(req.params.id)
+    //.then(() => res.json({ ok: true }))//the callback function will send a json response indicating
     //the note was removed. response body will contain ok true
-    .catch((err) => res.status(500).json(err));
-});
+   // .catch((err) => res.status(500).json(err));
+//});
 
 module.exports = router;
