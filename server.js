@@ -2,7 +2,8 @@
 const express = require('express');
 const apiRoutes = require('./routes/apiRoutes');
 const htmlRoutes = require('./routes/htmlRoutes');
-const store = require('./db/store');
+
+
 //unique identifier
 const { v4: uuidv4 } = require('uuid');
 //dependencies
@@ -22,7 +23,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
 //setting up a middleware to handle requests starting with /api
-app.use('./api', apiRoutes);
+app.use('/api', apiRoutes);
 //middleware for handling HTML pages
 app.use('/', htmlRoutes);
 
