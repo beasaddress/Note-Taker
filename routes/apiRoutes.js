@@ -1,11 +1,11 @@
-const router = require('express').Router();
+const api = require('express').Router();
 const path = require('path');
 const { v4: uuidv4 } = require('uuid');
 const fs = require('fs');
 
 
 //setting up a route handler for a get request to /notes path
-router.get('/notes', (req, res) => {
+api.get('/notes', (req, res) => {
     res.status(200).json(`${req.method} request recieved to get notes`);
     //log request to terminal
     console.info(`${req.method} request received to get notes`);
@@ -14,7 +14,7 @@ router.get('/notes', (req, res) => {
     
 });
 //setting up a route handler for post requests
-router.post('/notes', (req, res) => {
+api.post('/notes', (req, res) => {
     //this post request calls a function from store.js that will add a new note to the database
     //store.addNote(req.body)//passing the request body as an arguement
     //.then((note) => res.json(note))
@@ -35,11 +35,11 @@ router.post('/notes', (req, res) => {
                 if(err){
                     console.error(err);
                 } else {
-                    const parsedNotes = JSON.parsed(data);
+                    const parsedNotes = JSON.parse(data);
                     //adding new note to the json object of exisiting file
                     parsedNotes.push(newNote);
                     //writing the updated list of note objects into the json file
-                    fs.writeFile('/db/db.json', JSON.stringify(parsedNotes, null, 4),
+                    fs.writeFile('./db/db.json', JSON.stringify(parsedNotes, null, 4),
                     (writeErr) =>
                     writeErr ? console.error(writeErr) : console.info('Successfully updated notes')
                     );
