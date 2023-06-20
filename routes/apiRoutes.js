@@ -1,15 +1,22 @@
 const api = require('express').Router();
 const path = require('path');
-const { v4: uuidv4 } = require('uuid');
+const uuidv1 = require('uuid/v1');
 const fs = require('fs');
-const readFromFile = require('../helpers/fs.Utils.js');
+const store = require('../db/store');
+
+
 
 
 
 //setting up a route handler for a get request to /notes path
 api.get('/notes', (req, res) => {
-    readFromFile('./db/db.json').then((data) => res.json(JSON.parse(data)));
-});
+    store
+      .getNotes()
+      .then((notes) => {
+        return res.json(notes);
+      })
+      .catch((err) => res.status(500).json(err));
+  });
 //setting up a route handler for post requests
 api.post('/notes', (req, res) => {
     console.info(`${req.method} request method to add note`);
@@ -20,7 +27,7 @@ api.post('/notes', (req, res) => {
             const newNote = {
                 title,
                 text,
-                note_id: uuidv4(),
+                note_id: uuidv1(),
             };
             fs.readFile('./db/db.json', 'utf8', (err, data) => {
                 if(err){
