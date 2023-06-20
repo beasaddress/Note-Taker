@@ -1,16 +1,17 @@
 const router = require('express').Router();
-//const store = require('../db/store');
 const path = require('path');
+const { v4: uuidv4 } = require('uuid');
+const fs = require('fs');
 
 
 //setting up a route handler for a get request to /notes path
 router.get('/notes', (req, res) => {
+    res.status(200).json(`${req.method} request recieved to get notes`);
+    //log request to terminal
+    console.info(`${req.method} request received to get notes`);
     //this get request will call a function from the store module
-    store.getNotes()
-    .then((notes) => {
-        return res.json(notes);
-    })
-    .catch((err) => res.status(500).json(err));
+    readFromFile('./db/db.json').then((data) => res.json(JSON.parse(data)));
+    
 });
 //setting up a route handler for post requests
 router.post('/notes', (req, res) => {
