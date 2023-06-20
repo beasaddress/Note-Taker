@@ -2,25 +2,16 @@ const api = require('express').Router();
 const path = require('path');
 const { v4: uuidv4 } = require('uuid');
 const fs = require('fs');
+const readFromFile = require('../helpers/fs.Utils.js');
+
 
 
 //setting up a route handler for a get request to /notes path
 api.get('/notes', (req, res) => {
-    res.status(200).json(`${req.method} request recieved to get notes`);
-    //log request to terminal
-    console.info(`${req.method} request received to get notes`);
-    //this get request will call a function from the store module
     readFromFile('./db/db.json').then((data) => res.json(JSON.parse(data)));
-    
 });
 //setting up a route handler for post requests
 api.post('/notes', (req, res) => {
-    //this post request calls a function from store.js that will add a new note to the database
-    //store.addNote(req.body)//passing the request body as an arguement
-    //.then((note) => res.json(note))
-    //.catch((err) => res.status(500).json(err));
-
-
     console.info(`${req.method} request method to add note`);
     //destructuring items for reassignment
        const { title, text } = req.body;
@@ -61,12 +52,9 @@ api.post('/notes', (req, res) => {
 
 
 //setting up a route to handle deleting notes. the delete request
-//will call a removeNote funtion that will pass the note id as an arguement to remove it from the database
+
 //router.delete('/notes/:id', (req, res) => {
-    //store.removeNote(req.params.id)
-    //.then(() => res.json({ ok: true }))//the callback function will send a json response indicating
-    //the note was removed. response body will contain ok true
-   // .catch((err) => res.status(500).json(err));
+    
 //});
 
-module.exports = router;
+module.exports = api;
