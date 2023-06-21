@@ -1,11 +1,8 @@
 const api = require('express').Router();
 const path = require('path');
-const uuidv1 = require('uuid/v1');
+const { v4: uuidv4 } = require('uuid');
 const fs = require('fs');
 const store = require('../db/store');
-
-
-
 
 
 //setting up a route handler for a get request to /notes path
@@ -27,7 +24,7 @@ api.post('/notes', (req, res) => {
             const newNote = {
                 title,
                 text,
-                note_id: uuidv1(),
+                note_id: uuidv4(),
             };
             fs.readFile('./db/db.json', 'utf8', (err, data) => {
                 if(err){

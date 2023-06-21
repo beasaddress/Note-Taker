@@ -5,7 +5,7 @@ const htmlRoutes = require('./routes/htmlRoutes');
 
 
 //unique identifier
-const uuidv1 = require('uuid/v1');
+const { v4: uuidv4 } = require('uuid');
 //dependencies
 const fs = require('fs');
 const util = require('util');
