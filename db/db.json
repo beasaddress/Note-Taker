@@ -6,11 +6,21 @@
     {
         "title": "grocery",
         "text": "tomatoes apples",
-        "note_id": "b00ef3a3-1589-4cda-85ef-41475f0f4678"
+        "id": "b00ef3a3-1589-4cda-85ef-41475f0f4678"
     },
     {
         "title": "errands",
         "text": "call mom\ncall dad\nget coffee",
-        "note_id": "1d17997c-591a-4edc-8f4c-a2f78cb341c0"
+        "id": "1d17997c-591a-4edc-8f4c-a2f78cb341c0"
+    },
+    {
+        "title": "call mom",
+        "text": "ask her if she received her gift",
+        "id": "9f924d72-63a2-4204-8c5e-addf28cd3336"
+    },
+    {
+        "title": "this is test from insomnia",
+        "text": "insomnia note",
+        "id": "eb0f119a-44af-45e9-b273-c11a0ab67384"
     }
 ]
