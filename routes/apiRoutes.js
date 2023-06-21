@@ -3,11 +3,12 @@ const path = require('path');
 const { v4: uuidv4 } = require('uuid');
 const fs = require('fs');
 const store = require('../db/store');
+const db = new store();
 
 
 //setting up a route handler for a get request to /notes path
 api.get('/notes', (req, res) => {
-    store
+    db
       .getNotes()
       .then((notes) => {
         return res.json(notes);
