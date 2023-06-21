@@ -56,10 +56,6 @@ api.post('/notes', (req, res) => {
 
 
 
-//setting up a route to handle deleting notes. the delete request
 
-//router.delete('/notes/:id', (req, res) => {
-    
-//});
 
 module.exports = api;
